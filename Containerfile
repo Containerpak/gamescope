@@ -4,5 +4,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gamescope && \
-    ln -s /usr/games/gamescope /usr/bin/gamescope && \
+    sed -i 's|"/usr/lib/x86_64-linux-gnu/gamescope|"../../../lib/x86_64-linux-gnu/gamescope|' \
+        /usr/share/vulkan/implicit_layer.d/VkLayer_FROG_gamescope_wsi.x86_64.json && \
     cpak-clean-junk
+
+COPY --chmod=0755 gamescope /usr/bin/gamescope

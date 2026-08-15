@@ -1,0 +1,7 @@
+#!/bin/sh
+
+root=${CPAK_ROOTFS:-}
+
+exec "${root}/lib64/ld-linux-x86-64.so.2" \
+    --library-path "${root}/usr/lib/x86_64-linux-gnu:${root}/lib/x86_64-linux-gnu" \
+    "${root}/usr/games/gamescope" "$@"
